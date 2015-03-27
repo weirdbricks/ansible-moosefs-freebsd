@@ -8,6 +8,7 @@
     get_url: url=http://ppa.moosefs.com/src/moosefs-2.0.60-1.tar.gz dest=/root/moosefs.tar.gz mode=0644
   - name: Untar MooseFS source code
     unarchive: src=/root/moosefs.tar.gz dest=/root/
+    # source: http://serverfault.com/questions/573843/ansible-playbook-not-working-trying-to-run-make-configure-with-complex-switche
  - name: Build MooseFS
     shell: 'cd {{ moosefs_dir }};{{ item }}'
     with_items:
