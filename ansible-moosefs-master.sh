@@ -21,3 +21,8 @@ env ASSUME_ALWAYS_YES=YES pkg bootstrap -f || notify
 echo "Installing ansible and pv packages"
 env ASSUME_ALWAYS_YES=YES pkg install pv ansible || notify
 echo "Done!"
+
+echo "Downloading Ansible inventory file"
+mkdir -p /usr/local/etc/ansible || notify
+fetch -q https://github.com/weirdbricks/ansible-moosefs-freebsd/raw/master/hosts -o /usr/local/etc/ansible/hosts --no-verify-peer || notify
+echo "Done!" 
