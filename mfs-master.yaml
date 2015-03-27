@@ -15,3 +15,13 @@
       - ./configure
       - /usr/bin/make
       - /usr/bin/make install
+  - name: mv configuration file mfsmaster.cfg into place
+    command: mv /usr/local/etc/mfs/mfsmaster.cfg.dist /usr/local/etc/mfs/mfsmaster.cfg creates=/usr/local/etc/mfs/mfsmaster.cfg
+  - name: change user to root
+    lineinfile: dest=/usr/local/etc/mfs/mfsmaster.cfg insertafter=EOF line="WORKING_USER = root"
+  - name: change group to wheel
+    lineinfile: dest=/usr/local/etc/mfs/mfsmaster.cfg insertafter=EOF line="WORKING_GROUP = wheel"
+  - name: mv configuration file mfsexports.cfg.dist into place
+    command: mv /usr/local/etc/mfs/mfsexports.cfg.dist /usr/local/etc/mfs/mfsexports.cfg creates=/usr/local/etc/mfs/mfsexports.cfg
+  - name: mv configuration file mfstopology.cfg.dist into place
+    command: mv /usr/local/etc/mfs/mfstopology.cfg.dist /usr/local/etc/mfs/mfstopology.cfg creates=/usr/local/etc/mfs/mfstopology.cfg
