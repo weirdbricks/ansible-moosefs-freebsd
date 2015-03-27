@@ -9,7 +9,9 @@
   - name: Ensures directory /root/moosefs exists
     file: path=/root/moosefs state=directory
   - name: Untar MooseFS source code
-    unarchive: src=/root/moosefs.tar.gz dest=/root/moosefs
+    unarchive: src=/root/moosefs.tar.gz dest=/root/
+  - name: Rename the created directory
+    command: chdir=/root "mv ./moosefs-* ./moosefs"
   - name: Configure MooseFS, compile it and install it
     command: chdir=/root/moosefs "./configure;make;make install"
     
