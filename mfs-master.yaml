@@ -8,9 +8,9 @@
     get_url: url=http://ppa.moosefs.com/src/moosefs-2.0.60-1.tar.gz dest=/root/moosefs.tar.gz mode=0644
   - name: Untar MooseFS source code
     unarchive: src=/root/moosefs.tar.gz dest=/root/
-  - name: Configure MooseFS
-    command: '"/root/moosefs-2.0.60/configure" chdir=/root/moosefs-2.0.60 creates=config.h'
-  - name: Make MooseFS
-    command: '"/usr/bin/make" chdir=/root/moosefs-2.0.60 creates=mfsnetdump/mfsnetdump'
-    
-    
+ - name: Build MooseFS
+    shell: 'cd {{ moosefs_dir }};{{ item }}'
+    with_items:
+      - ./configure
+      - /usr/bin/make
+      - /usr/bin/make install
