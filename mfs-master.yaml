@@ -9,8 +9,8 @@
   - name: Untar MooseFS source code
     unarchive: src=/root/moosefs.tar.gz dest=/root/
   - name: Configure MooseFS
-    command: chdir=/root/moosefs-2.0.60 "./configure" creates=config.h
+    command: '"/root/moosefs-2.0.60/configure" chdir=/root/moosefs-2.0.60 creates=config.h'
   - name: Make MooseFS
-    command: chdir=/root/moosefs-2.0.60 "./make" 
+    command: '"/usr/bin/make" chdir=/root/moosefs-2.0.60 creates=mfsnetdump/mfsnetdump'
     
     
