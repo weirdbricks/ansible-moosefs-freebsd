@@ -1,5 +1,5 @@
 ---
-- hosts: 127.0.0.1
+- hosts: mfs-master
   connection: local
   vars: 
     moosefs_dir: '/root/moosefs-2.0.60'
