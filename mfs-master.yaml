@@ -1,5 +1,14 @@
 ---
 - hosts: 127.0.0.1
   connection: local
+  tasks:
   - name: ping them
     ping:
+  - name: Download MooseFS source code
+    get_url: url=http://ppa.moosefs.com/src/moosefs-2.0.60-1.tar.gz dest=/root/moosefs.tar.gz mode=0644
+  - name: Untar MooseFS source code
+    unarchive: src=/root/moosefs.tar.gz dest=/root/moosefs
+  - name: Configure MooseFS, compile it and install it
+    command: chdir=/root/moosefs "./configure;make;make install"
+    
+    
