@@ -25,3 +25,7 @@
     command: mv /usr/local/etc/mfs/mfsexports.cfg.dist /usr/local/etc/mfs/mfsexports.cfg creates=/usr/local/etc/mfs/mfsexports.cfg
   - name: mv configuration file mfstopology.cfg.dist into place
     command: mv /usr/local/etc/mfs/mfstopology.cfg.dist /usr/local/etc/mfs/mfstopology.cfg creates=/usr/local/etc/mfs/mfstopology.cfg
+  - name: start mfsmaster
+    command: /usr/local/sbin/mfsmaster -a
+  - name: start cgi interface
+    command: /usr/local/sbin/mfscgiserv
