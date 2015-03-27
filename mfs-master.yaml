@@ -11,6 +11,6 @@
   - name: Configure MooseFS
     command: chdir=/root/moosefs-2.0.60 "./configure" creates=config.h
   - name: Make MooseFS
-    command: chdir=/root/moosefs-2.0.60 "./make" creates=mfsnetdump/mfsnetdump
+    command: chdir=/root/moosefs-2.0.60 "./make" 
     
     
