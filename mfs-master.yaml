@@ -1,6 +1,8 @@
 ---
 - hosts: 127.0.0.1
   connection: local
+  vars: 
+    moosefs_dir: '/root/moosefs-2.0.60'
   tasks:
   - name: ping them
     ping:
@@ -9,7 +11,7 @@
   - name: Untar MooseFS source code
     unarchive: src=/root/moosefs.tar.gz dest=/root/
     # source: http://serverfault.com/questions/573843/ansible-playbook-not-working-trying-to-run-make-configure-with-complex-switche
- - name: Build MooseFS
+  - name: Build MooseFS
     shell: 'cd {{ moosefs_dir }};{{ item }}'
     with_items:
       - ./configure
