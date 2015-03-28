@@ -1,5 +1,13 @@
 [mfs-master]
-localhost ansible_connection=local ansible_python_interpreter=/usr/local/bin/python2.7
+localhost
+
+[mfs-master:vars]
+ansible_connection=local
+ansible_python_interpreter=/usr/local/bin/python2.7
 
 [mfs-chunkservers]
-wordpress-target-1 ansible_python_interpreter=/usr/local/bin/python2.7
+45.58.32.182
+
+[mfs-chunkservers:vars]
+ansible_python_interpreter=/usr/local/bin/python2.7
+ansible_ssh_private_key_file=/root/sshkey
