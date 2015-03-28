@@ -17,11 +17,13 @@ notify() {
 
 clear
 echo "Checking if the SSH key is present at ~/.ssh/id_rsa"
-if ( -e ~/.ssh/id_rsa ) then
-  echo "OK: Key found..."
+set ssh_key=~/.ssh/id_rsa
+if ( -e $ssh_key ) then
+        echo "OK: Key found..."
 else
-  exit
-fi
+        echo "ERROR: Key not found at $ssh_key - upload your key and try again"
+        exit 1
+endif
 
 echo "Bootstrapping pkg and python on chunkservers" 
 ansible mfs-chunkservers -m raw -a 'env ASSUME_ALWAYS_YES=YES pkg bootstrap -f; pkg install python'
