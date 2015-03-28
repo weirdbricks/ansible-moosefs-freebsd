@@ -21,7 +21,7 @@ if ( -e ~/.ssh/id_rsa ) then
   echo "OK: Key found..."
 else
   exit
-endif
+fi
 
 echo "Bootstrapping pkg and python on chunkservers" 
 ansible mfs-chunkservers -m raw -a 'env ASSUME_ALWAYS_YES=YES pkg bootstrap -f; pkg install python'
