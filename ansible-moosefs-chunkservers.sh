@@ -17,7 +17,7 @@ notify() {
 
 clear
 echo "Checking if the SSH key is present at ~/.ssh/id_rsa"
-if ( -e ~/.ssh/id_rsa ) then
+if ( -e /root/.ssh/id_rsa ) then
         echo "OK: Key found..."
 else
         echo "ERROR: Key not found at ~/.ssh/id_rsa - upload your key and try again"
