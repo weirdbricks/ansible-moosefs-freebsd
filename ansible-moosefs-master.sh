@@ -22,7 +22,7 @@ echo "Installing ansible and pv packages"
 env ASSUME_ALWAYS_YES=YES pkg install pv ansible || notify
 echo "Done!"
 
-echo "Downloading Ansible inventory file"
+echo "Downloading Ansible inventory file and playbooks"
 mkdir -p /usr/local/etc/ansible || notify
 fetch -q https://github.com/weirdbricks/ansible-moosefs-freebsd/raw/master/hosts -o /usr/local/etc/ansible/hosts --no-verify-peer || notify
 fetch -q https://github.com/weirdbricks/ansible-moosefs-freebsd/raw/master/mfs-build.yml --no-verify-peer || notify
