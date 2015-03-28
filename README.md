@@ -7,4 +7,4 @@ fetch -q -o - https://github.com/weirdbricks/ansible-moosefs-freebsd/raw/master/
 
 To setup the chunkservers, run this on the master - make sure you have copied your SSH key to the master as well.
 
-fetch -q -o - https://github.com/weirdbricks/ansible-moosefs-freebsd/raw/master/ansible-moosefs-chunkservers.sh --no-verify-peer | sh
+fetch -q https://github.com/weirdbricks/ansible-moosefs-freebsd/raw/master/ansible-moosefs-chunkservers.sh  --no-verify-peer && chmod +x ansible-moosefs-chunkservers.sh && ./ansible-moosefs-chunkservers.sh
