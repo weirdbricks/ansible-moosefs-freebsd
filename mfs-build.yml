@@ -3,6 +3,8 @@
     ping:
   - name: Download MooseFS source code
     get_url: url=http://ppa.moosefs.com/src/moosefs-2.0.60-1.tar.gz dest=/root/moosefs.tar.gz mode=0644
+  - name: Make sure the /root/ directory exists
+    file: path=/root/ state=directory owner=root group=wheel mode=0775
   - name: Untar MooseFS source code
     unarchive: src=/root/moosefs.tar.gz dest=/root/
     # source: http://serverfault.com/questions/573843/ansible-playbook-not-working-trying-to-run-make-configure-w
