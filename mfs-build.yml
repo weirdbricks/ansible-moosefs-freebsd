@@ -2,9 +2,9 @@
   - name: ping them
     ping:
   - name: Download MooseFS source code
-    get_url: url=http://ppa.moosefs.com/src/moosefs-2.0.60-1.tar.gz dest=/root/moosefs.tar.gz mode=0644
+    get_url: url=http://ppa.moosefs.com/src/moosefs-2.0.60-1.tar.gz dest=/root/moosefs.tar.gz
   - name: Untar MooseFS source code
-    unarchive: src=/root/moosefs.tar.gz dest=/root
+    shell: tar -xvf /root/moosefs.tar.gz -C /root/ creates={{ moosefs_dir }}
     # source: http://serverfault.com/questions/573843/ansible-playbook-not-working-trying-to-run-make-configure-w
   - name: Build MooseFS
     shell: 'cd {{ moosefs_dir }};{{ item }}'
@@ -12,3 +12,8 @@
       - ./configure
       - /usr/bin/make
       - /usr/bin/make install
+  - name: Delete directory {{ moosefs_dir }}
+    file: path={{ moosefs_dir }} state=absent
+  - name: Delete file moosefs.tar.gz
+    file: path=/root/moosefs.tar.gz state=absent
+
