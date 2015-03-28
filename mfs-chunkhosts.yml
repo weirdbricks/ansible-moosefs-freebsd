@@ -7,16 +7,17 @@
   remote_user: root
   vars:
     moosefs_dir: '/root/moosefs-2.0.60'
+    moosefs_cfg_dir: '/usr/local/etc/mfs'
   tasks:
   - include: mfs-build.yml
-#  - name: mv chunkserver configuration into place
-#    command: mv /usr/local/etc/mfs/mfschunkserver.cfg.dist /usr/local/etc/mfs/mfschunkserver.cfg creates=/usr/lo
-#  - name: mv chunkserver hdd configuration into place
-#    command: mv /usr/local/etc/mfs/mfshdd.cfg.dist /usr/local/etc/mfs/mfshdd.cfg creates=/usr/local/etc/mfs/mfsh
-#  - name: change user to mfs
-#    lineinfile: dest=/usr/local/etc/mfs/mfschunkserver.cfg insertafter=EOF line="WORKING_USER = root"
-#  - name: change group to mfs
-#    lineinfile: dest=/usr/local/etc/mfs/mfschunkserver.cfg insertafter=EOF line="WORKING_GROUP = wheel"
+  - name: mv chunkserver configuration into place
+    command: mv {{ moosefs_cfg_dir }}/mfschunkserver.cfg.dist {{ moosefs_cfg_dir }}/mfschunkserver.cfg creates={{ moosefs_cfg_dir }}/mfschunkserver.cfg
+  - name: mv chunkserver hdd configuration into place
+    command: mv {{ moosefs_cfg_dir }}/mfshdd.cfg.dist {{ moosefs_cfg_dir }}/mfshdd.cfg creates={{ moosefs_cfg_dir }}/mfshdd.cfg
+  - name: change user to mfs
+    lineinfile: dest={{ moosefs_cfg_dir }}/mfschunkserver.cfg insertafter=EOF line="WORKING_USER = root"
+  - name: change group to mfs
+    lineinfile: dest={{ moosefs_cfg_dir }}/mfschunkserver.cfg insertafter=EOF line="WORKING_GROUP = wheel"
 #  - name: set the IP of the master to 192.168.2.101
 #    lineinfile: dest=/usr/local/etc/mfs/mfschunkserver.cfg insertafter=EOF line="MASTER_HOST = 192.168.2.101"
 #  - name: add the mfschunkserver service to /etc/rc.conf
