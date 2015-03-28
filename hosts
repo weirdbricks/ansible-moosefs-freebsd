@@ -1,5 +1,5 @@
 [mfs-master]
-localhost ansible_connection=local ansible_python_interpreter=/usr/local/bin/python
+localhost ansible_connection=local ansible_python_interpreter=/usr/local/bin/python2.7
 
 [mfs-chunkservers]
-wordpress-target-1 ansible_python_interpreter=/usr/local/bin/python
+wordpress-target-1 ansible_python_interpreter=/usr/local/bin/python2.7
