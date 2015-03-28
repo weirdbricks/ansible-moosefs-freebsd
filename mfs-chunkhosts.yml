@@ -18,8 +18,9 @@
     lineinfile: dest={{ moosefs_cfg_dir }}/mfschunkserver.cfg insertafter=EOF line="WORKING_USER = root"
   - name: change group to mfs
     lineinfile: dest={{ moosefs_cfg_dir }}/mfschunkserver.cfg insertafter=EOF line="WORKING_GROUP = wheel"
-#  - name: set the IP of the master to 192.168.2.101
-#    lineinfile: dest=/usr/local/etc/mfs/mfschunkserver.cfg insertafter=EOF line="MASTER_HOST = 192.168.2.101"
+#{{ hostvars[item]['ansible_eth0']['ipv4']['address'] }}
+  - name: set the IP of the master to {{ hostvars[mfs-master]['ansible_eth0']['ipv4']['address'] }}
+    lineinfile: dest={{ moosefs_cfg_dir }}/mfschunkserver.cfg insertafter=EOF line="MASTER_HOST = {{ hostvars[mfs-master]['ansible_eth0']['ipv4']['address'] }}"
 #  - name: add the mfschunkserver service to /etc/rc.conf
 #    lineinfile: dest=/etc/rc.conf insertafter=EOF line='mfschunkserver_enable="YES"'
 #  - name: use dd to create a 'dedicated filesystem', the file will be created only if it doesn't exist
