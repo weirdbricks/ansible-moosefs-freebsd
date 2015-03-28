@@ -27,6 +27,7 @@ mkdir -p /usr/local/etc/ansible || notify
 fetch -q https://github.com/weirdbricks/ansible-moosefs-freebsd/raw/master/hosts -o /usr/local/etc/ansible/hosts --no-verify-peer || notify
 fetch -q https://github.com/weirdbricks/ansible-moosefs-freebsd/raw/master/mfs-build.yml --no-verify-peer || notify
 fetch -q https://github.com/weirdbricks/ansible-moosefs-freebsd/raw/master/mfs-master.yml --no-verify-peer || notify
+fetch -q https://github.com/weirdbricks/ansible-moosefs-freebsd/raw/master/mfs-chunkhosts.yml --no-verify-peer || notify
 echo "Done downloading files -- starting Ansible" 
 sleep 2 && clear
 ansible-playbook mfs-master.yml
