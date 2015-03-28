@@ -1,0 +1,30 @@
+---
+
+# most of this is based off:
+# https://gist.github.com/weirdbricks/e7019a942f72b7760499
+
+- hosts: mfs-chunkservers
+  remote_user: root
+  vars:
+    moosefs_dir: '/root/moosefs-2.0.60'
+  tasks:
+  - include: mfs-build.yml
+#  - name: mv chunkserver configuration into place
+#    command: mv /usr/local/etc/mfs/mfschunkserver.cfg.dist /usr/local/etc/mfs/mfschunkserver.cfg creates=/usr/lo
+#  - name: mv chunkserver hdd configuration into place
+#    command: mv /usr/local/etc/mfs/mfshdd.cfg.dist /usr/local/etc/mfs/mfshdd.cfg creates=/usr/local/etc/mfs/mfsh
+#  - name: change user to mfs
+#    lineinfile: dest=/usr/local/etc/mfs/mfschunkserver.cfg insertafter=EOF line="WORKING_USER = root"
+#  - name: change group to mfs
+#    lineinfile: dest=/usr/local/etc/mfs/mfschunkserver.cfg insertafter=EOF line="WORKING_GROUP = wheel"
+#  - name: set the IP of the master to 192.168.2.101
+#    lineinfile: dest=/usr/local/etc/mfs/mfschunkserver.cfg insertafter=EOF line="MASTER_HOST = 192.168.2.101"
+#  - name: add the mfschunkserver service to /etc/rc.conf
+#    lineinfile: dest=/etc/rc.conf insertafter=EOF line='mfschunkserver_enable="YES"'
+#  - name: use dd to create a 'dedicated filesystem', the file will be created only if it doesn't exist
+#    command: dd if=/dev/zero of=/root/mfschunks1 bs=1m count=1k creates=/root/mfschunks1
+#  - name: use the dedicated filesystem as a memory disk, run only if it doesn't exist
+#    command: mdconfig -a -t vnode -f /root/mfschunks1 creates=/dev/md0
+#  - name: create a filesystem in the memory disk
+#    command: newfs md0
+#    ignore_errors: True
