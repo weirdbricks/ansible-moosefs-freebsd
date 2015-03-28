@@ -3,7 +3,7 @@
 # most of this is based off:
 # https://gist.github.com/weirdbricks/e7019a942f72b7760499
 
-- hosts: mfs-chunkservers
+- hosts: mfschunkservers
   remote_user: root
   vars:
     moosefs_dir: '/root/moosefs-2.0.60'
