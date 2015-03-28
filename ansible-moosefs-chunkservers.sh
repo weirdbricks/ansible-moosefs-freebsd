@@ -25,8 +25,8 @@ else
 endif
 fi
 echo "Bootstrapping pkg and python on chunkservers" 
-ansible mfs-chunkservers -m raw -a 'env ASSUME_ALWAYS_YES=YES pkg bootstrap -f'
-ansible mfs-chunkservers -m raw -a 'env ASSUME_ALWAYS_YES=YES pkg install python'
+setenv ANSIBLE_HOST_KEY_CHECKING False ; ansible mfs-chunkservers -m raw -a 'env ASSUME_ALWAYS_YES=YES pkg bootstrap -f'
+setenv ANSIBLE_HOST_KEY_CHECKING False ; ansible mfs-chunkservers -m raw -a 'env ASSUME_ALWAYS_YES=YES pkg install python'
 echo "Downloading Ansible playbook for Chunkservers..."
-fetch -q -o - https://github.com/weirdbricks/ansible-moosefs-freebsd/raw/master/mfs-chunkhosts.yml --no-verify-peer
-ansible-playbook mfs-chunkhosts.yml
+fetch -q https://github.com/weirdbricks/ansible-moosefs-freebsd/raw/master/mfs-chunkhosts.yml --no-verify-peer
+setenv ANSIBLE_HOST_KEY_CHECKING False ; ansible-playbook mfs-chunkhosts.yml
