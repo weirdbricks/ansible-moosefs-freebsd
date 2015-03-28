@@ -1,32 +1,20 @@
 ---
 - hosts: mfs-master
   connection: local
-  vars: 
+  vars:
     moosefs_dir: '/root/moosefs-2.0.60'
   tasks:
-  - name: ping them
-    ping:
-  - name: Download MooseFS source code
-    get_url: url=http://ppa.moosefs.com/src/moosefs-2.0.60-1.tar.gz dest=/root/moosefs.tar.gz mode=0644
-  - name: Untar MooseFS source code
-    unarchive: src=/root/moosefs.tar.gz dest=/root/
-    # source: http://serverfault.com/questions/573843/ansible-playbook-not-working-trying-to-run-make-configure-with-complex-switche
-  - name: Build MooseFS
-    shell: 'cd {{ moosefs_dir }};{{ item }}'
-    with_items:
-      - ./configure
-      - /usr/bin/make
-      - /usr/bin/make install
+  - include: mfs-build.yml
   - name: mv configuration file mfsmaster.cfg into place
-    command: mv /usr/local/etc/mfs/mfsmaster.cfg.dist /usr/local/etc/mfs/mfsmaster.cfg creates=/usr/local/etc/mfs/mfsmaster.cfg
+    command: mv /usr/local/etc/mfs/mfsmaster.cfg.dist /usr/local/etc/mfs/mfsmaster.cfg creates=/usr/local/etc/mfs
   - name: change user to root
     lineinfile: dest=/usr/local/etc/mfs/mfsmaster.cfg insertafter=EOF line="WORKING_USER = root"
   - name: change group to wheel
     lineinfile: dest=/usr/local/etc/mfs/mfsmaster.cfg insertafter=EOF line="WORKING_GROUP = wheel"
   - name: mv configuration file mfsexports.cfg.dist into place
-    command: mv /usr/local/etc/mfs/mfsexports.cfg.dist /usr/local/etc/mfs/mfsexports.cfg creates=/usr/local/etc/mfs/mfsexports.cfg
+    command: mv /usr/local/etc/mfs/mfsexports.cfg.dist /usr/local/etc/mfs/mfsexports.cfg creates=/usr/local/etc/m
   - name: mv configuration file mfstopology.cfg.dist into place
-    command: mv /usr/local/etc/mfs/mfstopology.cfg.dist /usr/local/etc/mfs/mfstopology.cfg creates=/usr/local/etc/mfs/mfstopology.cfg
+    command: mv /usr/local/etc/mfs/mfstopology.cfg.dist /usr/local/etc/mfs/mfstopology.cfg creates=/usr/local/etc
   - name: start mfsmaster
     command: /usr/local/sbin/mfsmaster -a
   - name: start cgi interface
