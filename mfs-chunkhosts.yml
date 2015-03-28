@@ -18,7 +18,6 @@
     lineinfile: dest={{ moosefs_cfg_dir }}/mfschunkserver.cfg insertafter=EOF line="WORKING_USER = root"
   - name: change group to mfs
     lineinfile: dest={{ moosefs_cfg_dir }}/mfschunkserver.cfg insertafter=EOF line="WORKING_GROUP = wheel"
-#{{ hostvars[item]['ansible_eth0']['ipv4']['address'] }}
   - name: set the IP of the master to {{ hostvars[mfs-master]['ansible_eth0']['ipv4']['address'] }}
     lineinfile: dest={{ moosefs_cfg_dir }}/mfschunkserver.cfg insertafter=EOF line="MASTER_HOST = {{ hostvars[mfs-master]['ansible_eth0']['ipv4']['address'] }}"
 #  - name: add the mfschunkserver service to /etc/rc.conf
