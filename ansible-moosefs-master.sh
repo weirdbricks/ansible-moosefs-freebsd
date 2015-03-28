@@ -32,4 +32,3 @@ echo "Done downloading files -- starting Ansible"
 sleep 2 && clear
 ansible-playbook mfs-master.yml
 echo "Done setting up the master, now bootstraping pkg and installing Python on Chunkservers"
-ansible mfs-chunkservers -m raw -a 'env ASSUME_ALWAYS_YES=YES pkg bootstrap -f; pkg install python'
