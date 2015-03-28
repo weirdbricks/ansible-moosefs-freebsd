@@ -12,7 +12,7 @@ else
         echo "ERROR: Key not found at ~/.ssh/id_rsa - upload your key and try again"
         exit 1
 endif
-fi
+
 echo "Bootstrapping pkg and python on chunkservers" 
 setenv ANSIBLE_HOST_KEY_CHECKING False ; ansible mfs-chunkservers -m raw -a 'env ASSUME_ALWAYS_YES=YES pkg bootstrap -f'
 setenv ANSIBLE_HOST_KEY_CHECKING False ; ansible mfs-chunkservers -m raw -a 'env ASSUME_ALWAYS_YES=YES pkg install python'
