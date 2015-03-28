@@ -16,4 +16,3 @@
     file: path={{ moosefs_dir }} state=absent
   - name: Delete file moosefs.tar.gz
     file: path=/root/moosefs.tar.gz state=absent
-
