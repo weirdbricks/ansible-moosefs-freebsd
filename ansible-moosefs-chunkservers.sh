@@ -3,7 +3,7 @@
 #03/15/2015
 #Lampros for WeirdBricks
 #Run with:
-#fetch -q -o - https://github.com/weirdbricks/ansible-moosefs-freebsd/raw/master/ansible-moosefs-master.sh --no-verify-peer | sh
+#fetch -q -o - https://github.com/weirdbricks/ansible-moosefs-freebsd/raw/master/ansible-moosefs-chunkservers.sh --no-verify-peer | sh
 
 notify() {
   if [ $? -eq 0 ];
