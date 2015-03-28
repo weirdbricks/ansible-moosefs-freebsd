@@ -1,13 +1,13 @@
-[mfs-master]
+[mfsmaster]
 localhost
 
-[mfs-master:vars]
+[mfsmaster:vars]
 ansible_connection=local
 ansible_python_interpreter=/usr/local/bin/python2.7
 
-[mfs-chunkservers]
+[mfschunkservers]
 45.58.32.182
 
-[mfs-chunkservers:vars]
+[mfschunkservers:vars]
 ansible_python_interpreter=/usr/local/bin/python2.7
 ansible_ssh_private_key_file=~/.ssh/id_rsa
