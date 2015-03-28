@@ -24,7 +24,7 @@ else
         echo "ERROR: Key not found at $ssh_key - upload your key and try again"
         exit 1
 endif
-
+fi
 echo "Bootstrapping pkg and python on chunkservers" 
 ansible mfs-chunkservers -m raw -a 'env ASSUME_ALWAYS_YES=YES pkg bootstrap -f'
 ansible mfs-chunkservers -m raw -a 'env ASSUME_ALWAYS_YES=YES pkg install python'
