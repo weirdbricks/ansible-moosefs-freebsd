@@ -29,4 +29,4 @@ fetch -q https://github.com/weirdbricks/ansible-moosefs-freebsd/raw/master/mfs-b
 fetch -q https://github.com/weirdbricks/ansible-moosefs-freebsd/raw/master/mfs-master.yml --no-verify-peer || notify
 echo "Done downloading files -- starting Ansible" 
 sleep 2 && clear
-ansible-playbook mfs-master.yaml
+ansible-playbook mfs-master.yml
