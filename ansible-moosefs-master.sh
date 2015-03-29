@@ -30,4 +30,9 @@ fetch -q https://github.com/weirdbricks/ansible-moosefs-freebsd/raw/master/mfs-m
 echo "Done downloading files -- starting Ansible" 
 sleep 2 && clear
 ansible-playbook mfs-master.yml
-echo "---replace----me----"
+clear
+echo "NEXT STEPS:"
+echo "1. Edit /usr/local/etc/ansible/hosts and add the chunkservers you are planning to use"
+echo "2. Make sure your SSH key is under /root/.ssh/id_rsa"
+echo "Start the Chunkserver setup with:"
+echo "clear && fetch -q https://github.com/weirdbricks/ansible-moosefs-freebsd/raw/master/ansible-moosefs-chunkservers.sh --no-verify-peer && chmod +x ansible-moosefs-chunkservers.sh && ./ansible-moosefs-chunkservers.sh"
