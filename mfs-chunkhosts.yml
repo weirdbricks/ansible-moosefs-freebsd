@@ -21,9 +21,9 @@
     command: mv {{ moosefs_cfg_dir }}/mfschunkserver.cfg.dist {{ moosefs_cfg_dir }}/mfschunkserver.cfg creates={{ moosefs_cfg_dir }}/mfschunkserver.cfg
   - name: mv chunkserver hdd configuration into place
     command: mv {{ moosefs_cfg_dir }}/mfshdd.cfg.dist {{ moosefs_cfg_dir }}/mfshdd.cfg creates={{ moosefs_cfg_dir }}/mfshdd.cfg
-  - name: change user to mfs
+  - name: change user to root
     lineinfile: dest={{ moosefs_cfg_dir }}/mfschunkserver.cfg insertafter=EOF line="WORKING_USER = root"
-  - name: change group to mfs
+  - name: change group to wheel
     lineinfile: dest={{ moosefs_cfg_dir }}/mfschunkserver.cfg insertafter=EOF line="WORKING_GROUP = wheel"
 
 # the next task will *not* work without first gathering facts about the mfsmaster group
