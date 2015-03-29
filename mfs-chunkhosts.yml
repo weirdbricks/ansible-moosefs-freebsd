@@ -3,13 +3,20 @@
 # most of this is based off:
 # https://gist.github.com/weirdbricks/e7019a942f72b7760499
 
+- hosts: mfsmaster
+  name: Gather facts from the mfsmaster group
+  tasks:
+  # source: http://docs.ansible.com/setup_module.html
+  # this is used to get the IP address of the mfsmaster
+  - setup:
+
 - hosts: mfschunkservers
   remote_user: root
   vars:
     moosefs_dir: '/root/moosefs-2.0.60'
     moosefs_cfg_dir: '/usr/local/etc/mfs'
   tasks:
-  - include: mfs-build.yml
+#  - include: mfs-build.yml
   - name: mv chunkserver configuration into place
     command: mv {{ moosefs_cfg_dir }}/mfschunkserver.cfg.dist {{ moosefs_cfg_dir }}/mfschunkserver.cfg creates={{ moosefs_cfg_dir }}/mfschunkserver.cfg
   - name: mv chunkserver hdd configuration into place
@@ -18,10 +25,12 @@
     lineinfile: dest={{ moosefs_cfg_dir }}/mfschunkserver.cfg insertafter=EOF line="WORKING_USER = root"
   - name: change group to mfs
     lineinfile: dest={{ moosefs_cfg_dir }}/mfschunkserver.cfg insertafter=EOF line="WORKING_GROUP = wheel"
-  - name: set the IP of the master to {{ hostvars[mfs-master]['ansible_eth0']['ipv4']['address'] }}
-    lineinfile: dest={{ moosefs_cfg_dir }}/mfschunkserver.cfg insertafter=EOF line="MASTER_HOST = {{ hostvars[mfs-master]['ansible_eth0']['ipv4']['address'] }}"
-#  - name: add the mfschunkserver service to /etc/rc.conf
-#    lineinfile: dest=/etc/rc.conf insertafter=EOF line='mfschunkserver_enable="YES"'
+
+# the next task will *not* work without first gathering facts about the mfsmaster group
+
+  - name: set the IP of the master in mfschunkserver.cfg
+    lineinfile: dest={{ moosefs_cfg_dir }}/mfschunkserver.cfg insertafter=EOF line="MASTER_HOST = {{ hostvars[groups['mfsmaster'][0]]['ansible_default_ipv4']['address'] }}"
+
 #  - name: use dd to create a 'dedicated filesystem', the file will be created only if it doesn't exist
 #    command: dd if=/dev/zero of=/root/mfschunks1 bs=1m count=1k creates=/root/mfschunks1
 #  - name: use the dedicated filesystem as a memory disk, run only if it doesn't exist
