@@ -16,7 +16,7 @@
     moosefs_dir: '/root/moosefs-2.0.60'
     moosefs_cfg_dir: '/usr/local/etc/mfs'
   tasks:
-#  - include: mfs-build.yml
+  - include: mfs-build.yml
   - name: mv chunkserver configuration into place
     command: mv {{ moosefs_cfg_dir }}/mfschunkserver.cfg.dist {{ moosefs_cfg_dir }}/mfschunkserver.cfg creates={{ moosefs_cfg_dir }}/mfschunkserver.cfg
   - name: mv chunkserver hdd configuration into place
