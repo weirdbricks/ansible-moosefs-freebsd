@@ -42,7 +42,7 @@
   - name: create a mount point called /mnt/mfschunks1
     file: path=/mnt/mfschunks1 owner=root group=wheel state=directory
   - name: mount the memory disk to mountpoint
-    mount: src=/dev/md0 name=/mnt/mfschunks1 state=mounted fstype=mfs opts=rw
+    mount: src=/dev/md0 name=/mnt/mfschunks1 state=mounted fstype=mfs opts=rw,-s60g
   - name: add an entry for our hard drive
     lineinfile: dest=/usr/local/etc/mfs/mfshdd.cfg insertafter=EOF line="/mnt/mfschunks1"
   - name: start chunkserver
