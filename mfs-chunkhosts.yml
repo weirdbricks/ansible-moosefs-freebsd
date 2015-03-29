@@ -32,7 +32,7 @@
     lineinfile: dest={{ moosefs_cfg_dir }}/mfschunkserver.cfg insertafter=EOF line="MASTER_HOST = {{ hostvars[groups['mfsmaster'][0]]['ansible_default_ipv4']['address'] }}"
   - name: Install the mkfile package to create a 'dedicated filesystem'
     pkgng: name=mkfile state=present
-  - name: use mkfile to create a 'dedicated filesystem', the file will be created only if it doesn't exist
+  - name: use mkfile to create a 60GB 'dedicated filesystem', the file will be created only if it doesn't exist
     command: mkfile 60g /root/mfschunks1 creates=/root/mfschunks1
   - name: use the dedicated filesystem as a memory disk, run only if it doesn't exist
     command: mdconfig -a -t vnode -f /root/mfschunks1 creates=/dev/md0
